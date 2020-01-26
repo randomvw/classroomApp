@@ -8,11 +8,12 @@ const exphbs = require('express-handlebars');
 const routes = require('./routes/index');
 const passport = require('passport');
 const session = require('express-session');
-
+const flash = require('connect-flash');
 
 const app = express();
 
 app.use(session({ secret: 'chicken waffles' }));
+app.use(flash()); // npm install connect-flash
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(User.createStrategy());

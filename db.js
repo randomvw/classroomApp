@@ -8,6 +8,9 @@ const sequelize = new Sequelize(process.env.DATABASE_URL);
 const Student = StudentModel(sequelize, Sequelize);
 const User = UserModel(sequelize, Sequelize);
 
+User.hasMany(Student);
+Student.belongsTo(User);
+
 sequelize.sync().then( () => console.log('Tables are created'));
 // { force: true } under sequelize.sync to override (delete whole
 //   database every time server restarts)

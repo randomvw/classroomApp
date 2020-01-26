@@ -6,14 +6,17 @@ exports.addStudent = async (req, res) => {
 }
 
 exports.listStudents = async (req, res) => {
-  let students = await Student.findAll({ order: [
+  console.log(req.user.id);
+
+  let students = await Student.findAll({ where: { userId: req.user.id },order: [
     ['firstName', 'ASC'], //updatedAt or 'firstName' or 'lastName'
   ] });
 
-  res.render('list', { students });
+  res.render('list', { students, flashes: req.flash('success') });
 }
 
 exports.updateStudent = async (req, res) => {
+  req.body.userId = req.user.id;
   await Student.upsert(req.body);
   console.log(req.body);
 

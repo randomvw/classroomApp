@@ -8,5 +8,5 @@ module.exports = (sequelize, Sequelize) => {
     firstName: Sequelize.STRING,
     lastName: Sequelize.STRING, 
     phone: Sequelize.STRING, 
-  }, { freezeTableName: true })
+  }, { freezeTableName: true });
 }

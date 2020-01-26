@@ -1,3 +1,8 @@
+{{!-- {{#if flashes}}
+  <div class="alert alert-danger" role="alert">
+  {{ flashes }}
+</div>
+{{/if}} --}}
 <form action="/login" method="post">
 <div class="form-group">
   <label for="username">Username</label>
@@ -10,4 +15,13 @@
   <button type="submit" class="btn btn-success btn-sm">Login</button>
   <a class="btn btn-primary btn-space float-right btn-sm" class="text-right" href='/register'>Create account</a>
 </form>
+<br>
+{{#if flashes}}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">  
+  {{ flashes }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{{/if}}
 
