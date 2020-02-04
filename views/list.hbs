@@ -1,8 +1,11 @@
 <h1>Student List</h1>
 <br>
+{{#if isAdmin}}
 <a class="btn btn-primary" href='/add'>Add a Student</a>
+<a class="btn btn-secondary" href='/admin'>Edit User Permissions</a>
+{{/if}}
 <a class="btn btn-danger btn-space float-right" href='/logout'>Log out</a>
-
+<br>
 <table class="table table-sm">
   <thead class="thead-dark">
   <tr>
@@ -24,7 +27,7 @@
 {{#if flashes}}
   <div class="alert alert-success alert-dismissible fade show" role="alert">
     <h4><strong>{{ flashes.[0] }}</strong></h1>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close fade show" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
   </div>

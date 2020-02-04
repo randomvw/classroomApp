@@ -1,0 +1,31 @@
+<br>
+<h1>User List<a class="btn btn-danger btn-space float-right" href='/logout'>Log out</a></h1>
+
+
+<form action="/updateRoles" method="post">
+  <table class="table table-sm">
+    <thead class="thead-dark">
+    <tr>
+      <th>Username</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+    <ul>
+    {{#each users}}
+      <tr>
+        <td>{{this.username}}</td>
+        <td>
+          <select name="{{this.id}}">
+            {{#each this.roles}}
+              <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+            {{/each}}
+          </select>
+        </td>
+        
+      </tr>
+    {{/each}}
+  </ul>
+  </table>
+  <button type="submit" class="btn btn-success btn-sm">Submit</button>
+</form>
+

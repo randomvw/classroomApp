@@ -6,22 +6,30 @@ exports.addStudent = async (req, res) => {
 }
 
 exports.listStudents = async (req, res) => {
-  console.log(req.user.id);
-
+    //! {where: { userId: req.user.id }} lists students corresponding to that particular userId
+    
   let students = await Student.findAll({ where: { userId: req.user.id },order: [
     ['firstName', 'ASC'], //updatedAt or 'firstName' or 'lastName'
   ] });
+  
 
-  res.render('list', { students, flashes: req.flash('success') });
+
+  res.render('list', { isAdmin: req.user.roleId === 2, students, flashes: req.flash('success') });
 }
 
+
+
+//! IMPORTANT - Ties added student to the user that added them
 exports.updateStudent = async (req, res) => {
-  req.body.userId = req.user.id;
-  await Student.upsert(req.body);
+  req.body.userId = req.user.id;  //! <--- this line
+  await Student.upsert(req.body); // { firstName: "bob", lastName: "Smith", userID: 2, phone: '1234', }
   console.log(req.body);
 
   res.redirect('/');
 }
+
+
+
 
 exports.deleteStudent = async (req, res) => {
   const id = req.params.id;
